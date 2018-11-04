@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#0C2128</color>
+    <color name="colorPrimaryDark">#0C2128</color>
+    <color name="colorAccent">#00D475</color>
+
+    <color name="over70rating">#00D278</color>
+    <color name="under70rating">#D1D62B</color>
+    <color name="under40rating">#E61160</color>
+    <color name="notrated">#666666</color>
+    <color name="lightGrey">#dedede</color>
+
+    <color name="imagebutton_color">#8C242C30</color>
+
+</resources>

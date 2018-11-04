@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">TheMovieDB</string>
+    <string name="search_result">Movies based on your search.</string>
+    <string name="file_requirement">Add images (png, jpg), pdf or excel \n files no larger than 2 MB.</string>
+</resources>

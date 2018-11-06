@@ -48,21 +48,21 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         if (movie.getVoteAverage() != null) {
             rating = formatFloat(movie.getVoteAverage());
             if (rating == 0) {
-                movieViewHolder.ratingTextView.setText("NR");
+                movieViewHolder.ratingTextView.setText(context.getResources().getString(R.string.not_rated));
             } else {
                 movieViewHolder.ratingTextView.setText(String.valueOf(rating));
             }
             movieViewHolder.circularProgressBar.setProgress(rating);
             movieViewHolder.circularProgressBar.setForegroundStrokeColor(ContextCompat.getColor(context, setProgressBarColor(rating)));
         } else {
-            movieViewHolder.ratingTextView.setText("NR");
+            movieViewHolder.ratingTextView.setText(context.getResources().getString(R.string.not_rated));
             movieViewHolder.circularProgressBar.setProgress(rating);
             movieViewHolder.circularProgressBar.setForegroundStrokeColor(ContextCompat.getColor(context, setProgressBarColor(rating)));
         }
         if (movie.getReleaseDate() != null) {
             movieViewHolder.releaseDateTextView.setText(movie.getReleaseDate());
         } else {
-            movieViewHolder.releaseDateTextView.setText("Not available.");
+            movieViewHolder.releaseDateTextView.setText(context.getResources().getString(R.string.not_available));
         }
         if (movie.getTitle() != null) {
             movieViewHolder.titleTextView.setText(movie.getTitle());

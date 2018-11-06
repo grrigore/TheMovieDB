@@ -173,14 +173,14 @@ public class MovieDetailActivity extends AppCompatActivity {
         if (movie.getVoteAverage() != null) {
             rating = formatFloat(movie.getVoteAverage());
             if (rating == 0) {
-                ratingTextView.setText("NR");
+                ratingTextView.setText(getResources().getString(R.string.not_rated));
             } else {
                 ratingTextView.setText(String.valueOf(rating));
             }
             ratingProgressBar.setProgress(rating);
             ratingProgressBar.setForegroundStrokeColor(ContextCompat.getColor(getApplicationContext(), setProgressBarColor(rating)));
         } else {
-            ratingTextView.setText("NR");
+            ratingTextView.setText(getResources().getString(R.string.not_rated));
             ratingProgressBar.setProgress(rating);
             ratingProgressBar.setForegroundStrokeColor(ContextCompat.getColor(getApplicationContext(), setProgressBarColor(rating)));
         }
@@ -188,7 +188,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         if (movie.getReleaseDate() != null) {
             releaseDateTextView.setText(movie.getReleaseDate());
         } else {
-            releaseDateTextView.setText("Not available.");
+            releaseDateTextView.setText(getResources().getString(R.string.not_available));
         }
         if (movie.getTitle() != null) {
             titleTextView.setText(movie.getTitle());

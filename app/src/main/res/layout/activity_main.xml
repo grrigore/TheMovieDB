@@ -147,7 +147,8 @@
             android:src="@drawable/ic_plus"
             app:backgroundTint="@color/colorAccent"
             app:elevation="0dp"
-            app:fabSize="normal" />
+            app:fabSize="normal"
+            android:layout_marginRight="32dp" />
 
     </FrameLayout>
 </android.support.constraint.ConstraintLayout>

@@ -4,7 +4,7 @@ public class Constants {
 
     //todo extract constants
     public static final String BASE_URL = "https://api.themoviedb.org";
-    public static final String API_KEY = "5f4b5ade5d834c5dbb4b0c804f3ea5b6";
+    public static final String API_KEY = "";
     public static final String LANGUAGE = "en-US";
     public static final String CATEGORY = "upcoming";
     public static final String BASE_URL_POSTER = "http://image.tmdb.org/t/p/w200";

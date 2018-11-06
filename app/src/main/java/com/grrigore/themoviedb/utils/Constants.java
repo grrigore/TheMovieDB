@@ -10,7 +10,6 @@ public class Constants {
     public static final String BASE_URL_POSTER = "http://image.tmdb.org/t/p/w200";
     public static final String BASE_URL_PROFILE = "https://image.tmdb.org/t/p/original";
 
-
     public static final String DB_NAME = "movieDatabase.db";
 
     public static final String MOVIE_CLICKED = "movieClicked";

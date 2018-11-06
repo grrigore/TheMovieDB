@@ -20,7 +20,7 @@ public class Utils {
     }
 
     public static int setProgressBarColor(int rating) {
-        if (rating != 0 && rating < 40) {
+        if (rating > 0 && rating < 40) {
             return R.color.under40rating;
         } else if (rating >= 40 && rating < 70) {
             return R.color.under70rating;
@@ -28,7 +28,7 @@ public class Utils {
             return R.color.over70rating;
         }
 
-        return R.color.over70rating;
+        return R.color.not_rated;
     }
 
     public static List<?> getSubList(List<?> list, int numberOfElements) {

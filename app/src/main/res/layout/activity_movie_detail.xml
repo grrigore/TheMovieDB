@@ -39,7 +39,7 @@
                     android:layout_height="match_parent"
                     android:contentDescription="@string/movie_poster"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/poster_test" />
+                    android:src="@drawable/poster_placeholder" />
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -292,6 +292,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/movie_poster"
+                android:src="@drawable/poster_placeholder"
                 android:padding="6dp"
                 android:scaleType="centerCrop" />
 

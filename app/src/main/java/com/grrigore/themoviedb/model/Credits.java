@@ -10,6 +10,9 @@ public class Credits {
     @SerializedName("crew")
     private List<Crew> crewList;
 
+    public Credits() {
+    }
+
     public List<Cast> getCastList() {
         return castList;
     }

@@ -54,8 +54,4 @@ public class CrewAdapter extends RecyclerView.Adapter<CrewAdapter.CrewViewHolder
             crewTextView = itemView.findViewById(R.id.textview_moviedetail_crewdepartment);
         }
     }
-
-    public void setCrewList(List<CrewRoom> crewList) {
-        this.crewList = crewList;
-    }
 }

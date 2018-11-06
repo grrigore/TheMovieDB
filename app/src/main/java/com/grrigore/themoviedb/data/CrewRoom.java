@@ -4,14 +4,9 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity(tableName = "crew")
-//,
-//indices = @Index("movie_id"),
-//foreignKeys = @ForeignKey(entity = MovieRoom.class, parentColumns = "id", childColumns = "movie_id"))
 public class CrewRoom {
     @PrimaryKey
     private int id;
-    //@ColumnInfo(name = "movie_id")
-    //private int movieId;
     private String name;
     private String department;
 

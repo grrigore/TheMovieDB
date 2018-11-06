@@ -7,7 +7,7 @@ import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity(tableName = "cast_movie",
-        indices = {@Index("movie_id"),@Index("cast_id")},
+        indices = {@Index("movie_id"), @Index("cast_id")},
         foreignKeys = {@ForeignKey(entity = CastRoom.class, parentColumns = "id", childColumns = "cast_id"),
                 @ForeignKey(entity = MovieRoom.class, parentColumns = "id", childColumns = "movie_id")})
 public class CastMovieRoom {

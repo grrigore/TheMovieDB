@@ -12,7 +12,6 @@ public class Cast {
     public Cast() {
     }
 
-
     public int getId() {
         return id;
     }

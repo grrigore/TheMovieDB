@@ -16,7 +16,6 @@ public class Movie {
     @SerializedName("release_date")
     private String releaseDate;
 
-
     public Movie() {
     }
 
@@ -79,6 +78,4 @@ public class Movie {
                 ", releaseDate='" + releaseDate + '\'' +
                 '}';
     }
-
-
 }

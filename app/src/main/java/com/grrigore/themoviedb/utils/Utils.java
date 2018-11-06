@@ -14,7 +14,6 @@ public class Utils {
         return (int) number;
     }
 
-
     public static boolean doesDatabaseExist(Context context, String dbName) {
         File dbFile = context.getDatabasePath(dbName);
         return dbFile.exists();

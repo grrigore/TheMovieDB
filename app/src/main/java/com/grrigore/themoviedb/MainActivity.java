@@ -69,8 +69,10 @@ import static com.grrigore.themoviedb.utils.Utils.getSubList;
 
 
 public class MainActivity extends AppCompatActivity implements MovieAdapter.ItemClickListener {
+    //todo run Lint, run FindBugs, run CheckStyle
 
-
+    //todo refactor methods
+    //todo refactor variable name
     private Context mainActivityContext;
 
     private RecyclerView movieListRecyclerView;

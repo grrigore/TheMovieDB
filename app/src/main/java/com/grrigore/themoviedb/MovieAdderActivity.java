@@ -25,6 +25,8 @@ import static com.grrigore.themoviedb.utils.Constants.PICK_IMAGE;
 
 public class MovieAdderActivity extends AppCompatActivity {
 
+    //todo refactor methods
+    //todo refactor variable name
     private EditText titleEditText;
     private EditText overviewEditText;
     private EditText imdbIdEditText;

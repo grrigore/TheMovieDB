@@ -1,7 +1,6 @@
 package com.grrigore.themoviedb.data;
 
 import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
@@ -23,10 +22,4 @@ public interface MovieDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(MovieRoom movie);
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<MovieRoom> movies);
-
-    @Delete
-    void delete(MovieRoom movie);
 }

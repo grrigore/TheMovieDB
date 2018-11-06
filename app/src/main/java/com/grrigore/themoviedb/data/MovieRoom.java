@@ -22,7 +22,6 @@ public class MovieRoom {
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     private byte[] poster;
 
-
     public MovieRoom() {
     }
 

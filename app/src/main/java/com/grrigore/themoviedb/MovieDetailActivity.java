@@ -38,6 +38,8 @@ import static com.grrigore.themoviedb.utils.Utils.setProgressBarColor;
 
 public class MovieDetailActivity extends AppCompatActivity {
 
+    //todo refactor methods
+    //todo refactor variable name
     private Integer movieId;
 
     private ImageView coverImageView;

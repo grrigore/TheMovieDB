@@ -1,6 +1,5 @@
 package com.grrigore.themoviedb.adapter;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
@@ -58,9 +57,5 @@ public class CastAdapter extends RecyclerView.Adapter<CastAdapter.CastViewHolder
             super(itemView);
             castImageView = itemView.findViewById(R.id.imageview_moviedetail_cast);
         }
-    }
-
-    public void setCastList(List<CastRoom> castList) {
-        this.castList = castList;
     }
 }

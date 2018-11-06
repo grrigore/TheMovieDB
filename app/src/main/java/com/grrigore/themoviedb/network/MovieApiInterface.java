@@ -18,5 +18,4 @@ public interface MovieApiInterface {
     @GET("/3/movie/{id}/credits")
     Call<Credits> getCredits(@Path("id") int id,
                              @Query("api_key") String apiKey);
-
 }

@@ -116,12 +116,12 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
             public boolean onQueryTextSubmit(final String s) {
                 new AsyncTask<Void, Void, List<MovieRoom>>() {
                     @Override
-                    protected List doInBackground(Void... params) {
+                    protected List<MovieRoom> doInBackground(Void... params) {
                         return movieDao.getMovieByTitle(s + "%");
                     }
 
                     @Override
-                    protected void onPostExecute(List items) {
+                    protected void onPostExecute(List<MovieRoom> items) {
                         setUI(items);
                         String searchResult = "<b>" + items.size() + "</b> " + getString(R.string.search_result);
                         resultTextView.setText(Html.fromHtml(searchResult));
@@ -149,12 +149,12 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
         } else {
             new AsyncTask<Void, Void, List<MovieRoom>>() {
                 @Override
-                protected List doInBackground(Void... params) {
+                protected List<MovieRoom> doInBackground(Void... params) {
                     return movieDao.getAllMovies();
                 }
 
                 @Override
-                protected void onPostExecute(List items) {
+                protected void onPostExecute(List<MovieRoom> items) {
                     setUI(items);
                 }
             }.execute();
@@ -433,7 +433,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
 
     private void setToolbar() {
         mainActivityContext = getApplicationContext();
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Movies");
         toolbar.setNavigationIcon(R.drawable.ic_arrow_left);
         setSupportActionBar(toolbar);

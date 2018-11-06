@@ -135,12 +135,12 @@ public class MovieDetailActivity extends AppCompatActivity {
                 setMovieUi(movieRoom);
                 new AsyncTask<Void, Void, List<CrewRoom>>() {
                     @Override
-                    protected List doInBackground(Void... voids) {
+                    protected List<CrewRoom> doInBackground(Void... voids) {
                         return crewMovieRoomDao.getCrewByMovieId(movieId);
                     }
 
                     @Override
-                    protected void onPostExecute(List crewRoom) {
+                    protected void onPostExecute(List<CrewRoom> crewRoom) {
                         if (crewRoom.size() == 0) {
                             crewCardView.setVisibility(View.INVISIBLE);
                         } else {
@@ -148,12 +148,12 @@ public class MovieDetailActivity extends AppCompatActivity {
                         }
                         new AsyncTask<Void, Void, List<CastRoom>>() {
                             @Override
-                            protected List doInBackground(Void... voids) {
+                            protected List<CastRoom> doInBackground(Void... voids) {
                                 return castMovieRoomDao.getCastByMovieId(movieId);
                             }
 
                             @Override
-                            protected void onPostExecute(List castRoom) {
+                            protected void onPostExecute(List<CastRoom> castRoom) {
                                 if (castRoom.size() == 0) {
                                     castCardView.setVisibility(View.INVISIBLE);
                                 } else {

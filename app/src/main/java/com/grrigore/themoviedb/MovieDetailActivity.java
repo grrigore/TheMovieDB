@@ -109,7 +109,6 @@ public class MovieDetailActivity extends AppCompatActivity {
         populateDatabase();
     }
 
-    //todo error
     private void populateDatabase() {
         movieDao = MovieDatabase.getMovieDatabaseInsatnce(getApplicationContext()).getMovieDao();
         castMovieRoomDao = MovieDatabase.getMovieDatabaseInsatnce(getApplicationContext()).getCastMovieRoomDao();
@@ -134,7 +133,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                     @Override
                     protected void onPostExecute(List crewRoom) {
                         if (crewRoom.size() == 0) {
-                            crewCardView.setVisibility(View.GONE);
+                            crewCardView.setVisibility(View.INVISIBLE);
                         } else {
                             setCrewRecyclerViewUi(crewRoom);
                         }
@@ -147,7 +146,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                             @Override
                             protected void onPostExecute(List castRoom) {
                                 if (castRoom.size() == 0) {
-                                    castCardView.setVisibility(View.GONE);
+                                    castCardView.setVisibility(View.INVISIBLE);
                                 } else {
                                     setCastRecyclerViewUi(castRoom);
                                 }

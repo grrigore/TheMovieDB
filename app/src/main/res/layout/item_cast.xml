@@ -4,18 +4,19 @@
     android:layout_height="155dp">
 
     <ImageView
-        android:layout_gravity="center"
         android:id="@+id/imageview_moviedetail_cast"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:contentDescription="@string/cast_profile"
         android:padding="6dp"
-        android:contentDescription="Movie poster."
         android:scaleType="centerCrop" />
 
     <ImageView
-        android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:contentDescription="@string/cast_profile"
         android:src="@drawable/profile_frame" />
 
 </FrameLayout>

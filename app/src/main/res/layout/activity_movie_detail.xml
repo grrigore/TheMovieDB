@@ -26,7 +26,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:elevation="1dp"
                 android:minHeight="?attr/actionBarSize"
                 app:titleTextColor="@android:color/white" />
 
@@ -38,12 +37,14 @@
                     android:id="@+id/imageview_moviedetails_cover"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:contentDescription="@string/movie_poster"
                     android:scaleType="centerCrop"
                     android:src="@drawable/poster_test" />
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:contentDescription="@string/movie_poster"
                     android:src="@drawable/cover_frame" />
             </FrameLayout>
 
@@ -84,7 +85,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="54"
                     android:textColor="@color/lightGrey" />
 
 
@@ -112,8 +112,8 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:ellipsize="end"
+                android:gravity="start"
                 android:maxLines="1"
-                android:text="Alpha"
                 android:textColor="@android:color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -127,9 +127,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
+                android:gravity="start"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
-                android:text="September 14, 2018"
+
                 android:textColor="@color/lightGrey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.28"
@@ -145,6 +146,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/imagebutton_bacground"
+                android:contentDescription="@string/list_button"
                 android:scaleType="center"
                 android:src="@drawable/ic_list"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -162,6 +164,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/imagebutton_bacground"
+                android:contentDescription="@string/love_button"
                 android:scaleType="center"
                 android:src="@drawable/ic_love"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -180,6 +183,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/imagebutton_bacground"
+                android:contentDescription="@string/bookmark_button"
                 android:scaleType="center"
                 android:src="@drawable/ic_bookmark"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -196,10 +200,10 @@
                 android:layout_height="40dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/imagebutton_bacground"
+                android:contentDescription="@string/star_button"
                 android:scaleType="center"
                 android:src="@drawable/ic_star_favorite"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -239,7 +243,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
-                    android:text="Overview"
+                    android:text="@string/overview"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -276,7 +280,6 @@
             android:layout_marginEnd="32dp"
             android:layout_marginRight="32dp"
             android:layout_marginBottom="8dp"
-            android:elevation="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -288,14 +291,14 @@
                 android:id="@+id/imageview_moviedetail_poster"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:contentDescription="Movie poster."
+                android:contentDescription="@string/movie_poster"
                 android:padding="6dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/poster_test" />
+                android:scaleType="centerCrop" />
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:contentDescription="@string/movie_poster"
                 android:src="@drawable/poster_frame" />
 
         </FrameLayout>
@@ -326,7 +329,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="Featured Crew"
+                    android:text="@string/featured_crew"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -365,7 +368,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="Top Billed Cast"
+                    android:text="@string/top_billed_cast"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 

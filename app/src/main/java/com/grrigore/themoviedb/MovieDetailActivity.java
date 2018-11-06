@@ -14,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -56,6 +57,8 @@ public class MovieDetailActivity extends AppCompatActivity {
     private CardView castCardView;
     private CircularProgressBar ratingProgressBar;
 
+    private FrameLayout posterFrameLayout;
+
     private MovieDao movieDao;
     private CastMovieRoomDao castMovieRoomDao;
     private CrewMovieRoomDao crewMovieRoomDao;
@@ -81,6 +84,8 @@ public class MovieDetailActivity extends AppCompatActivity {
 
         ratingProgressBar = findViewById(R.id.progresscircular_moviedetail_rating);
 
+        posterFrameLayout = findViewById(R.id.framelayout_moviedetail_poster);
+
 
         crewCardView = findViewById(R.id.cardview_moviedetail_crew);
         castCardView = findViewById(R.id.cardview_moviedetail_cast);
@@ -101,6 +106,8 @@ public class MovieDetailActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_left);
         setSupportActionBar(toolbar);
+        toolbar.bringToFront();
+        posterFrameLayout.bringToFront();
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

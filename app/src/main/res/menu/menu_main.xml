@@ -5,11 +5,11 @@
     <item android:id="@+id/notification"
         android:icon="@drawable/ic_notification_bell"
         app:showAsAction="always"
-        android:title="Notifications"/>
+        android:title="@string/notifications"/>
     <item android:id="@+id/option_bar"
         android:icon="@drawable/ic_option_bar_settings"
         app:showAsAction="always"
-        android:title="Options"/>
+        android:title="@string/options"/>
 
 
 </menu>

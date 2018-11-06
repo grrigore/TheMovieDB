@@ -6,7 +6,7 @@
     android:layout_marginBottom="8dp">
 
     <TextView
-        android:gravity="start|left"
+        android:gravity="start"
         android:id="@+id/textview_moviedetail_crewname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,6 +18,7 @@
 
 
     <TextView
+        android:gravity="start"
         android:id="@+id/textview_moviedetail_crewdepartment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

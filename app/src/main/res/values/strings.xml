@@ -2,4 +2,24 @@
     <string name="app_name">TheMovieDB</string>
     <string name="search_result">Movies based on your search.</string>
     <string name="file_requirement">Add images (png, jpg), pdf or excel \n files no larger than 2 MB.</string>
+    <string name="image_icon">Image icon</string>
+    <string name="movie_poster">Movie poster</string>
+    <string name="list_button">List button</string>
+    <string name="love_button">Love button</string>
+    <string name="bookmark_button">Bookmark button</string>
+    <string name="star_button">Star button</string>
+    <string name="cast_profile">Cast profile</string>
+    <string name="filters_button">Filters</string>
+    <string name="movie_details">Movie details</string>
+    <string name="original_title">Original title</string>
+    <string name="movie_overview">Movie overview</string>
+    <string name="imdb_id">IMDB ID</string>
+    <string name="movie_poster">Movie poster</string>
+    <string name="select_files">Select files</string>
+    <string name="add_movie_button">add movie</string>
+    <string name="overview">Overview</string>
+    <string name="featured_crew">Featured Crew</string>
+    <string name="top_billed_cast">Top Billed Cast</string>
+    <string name="notifications">Notifications</string>
+    <string name="options">Options</string>
 </resources>

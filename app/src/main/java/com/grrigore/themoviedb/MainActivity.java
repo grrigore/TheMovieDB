@@ -15,7 +15,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -72,8 +71,6 @@ import static com.grrigore.themoviedb.utils.Utils.getSubList;
 public class MainActivity extends AppCompatActivity implements MovieAdapter.ItemClickListener {
     //todo run Lint, run FindBugs, run CheckStyle
 
-    //todo refactor methods
-    //todo refactor variable name
     private Context mainActivityContext;
 
     private RecyclerView movieListRecyclerView;
@@ -84,11 +81,13 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
     private byte[] profileByteArray;
 
     private MovieApiInterface movieApiInterface;
+
     private MovieDao movieDao;
     private CrewDao crewDao;
     private CastDao castDao;
     private CrewMovieRoomDao crewMovieRoomDao;
     private CastMovieRoomDao castMovieRoomDao;
+
     private MovieAdapter movieListAdapter;
 
     @Override
@@ -114,21 +113,8 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
 
         movieSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(final String s) {
-                new AsyncTask<Void, Void, List<MovieRoom>>() {
-                    @Override
-                    protected List<MovieRoom> doInBackground(Void... params) {
-                        return movieDao.getMovieByTitle(s + SEARCH_WILDCARD);
-                    }
-
-                    @Override
-                    protected void onPostExecute(List<MovieRoom> items) {
-                        setUI(items);
-                        String searchResult = "<b>" + items.size() + "</b> " + getString(R.string.search_result);
-                        resultTextView.setText(Html.fromHtml(searchResult));
-                        resultTextView.setVisibility(View.VISIBLE);
-                    }
-                }.execute();
+            public boolean onQueryTextSubmit(final String movieTitle) {
+                loadFoundMovies(movieTitle);
                 return false;
             }
 
@@ -148,19 +134,10 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
             crewMovieRoomDao = MovieDatabase.getMovieDatabaseInsatnce(getApplicationContext()).getCrewMovieRoomDao();
             getMovieList();
         } else {
-            new AsyncTask<Void, Void, List<MovieRoom>>() {
-                @Override
-                protected List<MovieRoom> doInBackground(Void... params) {
-                    return movieDao.getAllMovies();
-                }
-
-                @Override
-                protected void onPostExecute(List<MovieRoom> items) {
-                    setUI(items);
-                }
-            }.execute();
+            loadMovies();
         }
     }
+
 
     private void setUI(List<MovieRoom> movies) {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
@@ -172,14 +149,15 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
     }
 
     private void getMovieList() {
-        Call<MoviesList> moviesListCall = movieApiInterface.getMovies(CATEGORY, API_KEY, LANGUAGE);
+        Call<MoviesList> moviesListCall = movieApiInterface.getMovies(CATEGORY,
+                API_KEY, LANGUAGE);
         moviesListCall.enqueue(new Callback<MoviesList>() {
             @Override
             public void onResponse(Call<MoviesList> call, Response<MoviesList> response) {
                 MoviesList moviesList = response.body();
                 List<Movie> movieList = moviesList.getResults();
 
-                final List<MovieRoom> movieRoomList = new ArrayList<>();
+                final List<MovieRoom> movieRooms = new ArrayList<>();
                 for (final Movie movie : movieList) {
                     String posterUrl = BASE_URL_POSTER + movie.getPosterPath();
                     Glide.with(getApplicationContext())
@@ -206,26 +184,14 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
                                 }
 
                                 @Override
-                                public void onResourceReady(@NonNull Bitmap resourcePoster, @Nullable Transition<? super Bitmap> transition) {
+                                public void onResourceReady(@NonNull Bitmap resourcePoster,
+                                                            @Nullable Transition<? super Bitmap> transition) {
                                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
                                     resourcePoster.compress(Bitmap.CompressFormat.PNG, 0, stream);
                                     posterByteArray = stream.toByteArray();
                                     movieRoom.setPoster(posterByteArray);
 
-                                    new AsyncTask<Void, Void, MovieRoom>() {
-                                        @Override
-                                        protected MovieRoom doInBackground(Void... voids) {
-                                            movieDao.insert(movieRoom);
-                                            return movieRoom;
-                                        }
-
-                                        @Override
-                                        protected void onPostExecute(MovieRoom movieRoom) {
-                                            movieRoomList.add(movieRoom);
-                                            setUI(movieRoomList);
-                                            getCredits(movieRoom.getId());
-                                        }
-                                    }.execute();
+                                    insertMovie(movieRoom, movieRooms);
                                 }
 
                                 @Override
@@ -273,7 +239,8 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
 
             @Override
             public void onFailure(Call<MoviesList> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), getResources().getString(R.string.retrofit_failure), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),
+                        getResources().getString(R.string.retrofit_failure), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -285,13 +252,11 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
             public void onResponse(Call<Credits> call, Response<Credits> response) {
                 Credits credits = response.body();
 
-                //Get top 5/top 6 from cast/crew
                 List<Crew> crewList = credits.getCrewList();
                 crewList = (List<Crew>) getSubList(crewList, 6);
                 List<Cast> castList = credits.getCastList();
                 castList = (List<Cast>) getSubList(castList, 4);
 
-                final List<CastRoom> castRoomList = new ArrayList<>();
                 List<CrewRoom> crewRoomList = new ArrayList<>();
                 for (final Cast cast : castList) {
                     String profileUrl = BASE_URL_PROFILE + cast.getProfilePath();
@@ -317,7 +282,8 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
                                 }
 
                                 @Override
-                                public void onResourceReady(@NonNull Bitmap resourceProfile, @Nullable Transition<? super Bitmap> transition) {
+                                public void onResourceReady(@NonNull Bitmap resourceProfile,
+                                                            @Nullable Transition<? super Bitmap> transition) {
                                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
                                     resourceProfile.compress(Bitmap.CompressFormat.PNG, 0, stream);
                                     profileByteArray = stream.toByteArray();
@@ -327,18 +293,9 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
                                     //create and insert cast-movie into room
                                     castMovieRoom.setCastId(cast.getId());
                                     castMovieRoom.setMovieId(movieId);
-                                    new AsyncTask<Void, Void, Void>() {
-                                        @Override
-                                        protected Void doInBackground(Void... voids) {
-                                            castDao.insert(castRoom);
-                                            Log.d("TAG", castRoom.toString());
-
-                                            castMovieRoomDao.insert(castMovieRoom);
-                                            Log.d("TAG", castMovieRoom.toString());
-                                            return null;
-                                        }
-                                    }.execute();
+                                    insertCastMembers(castRoom, castMovieRoom);
                                 }
+
 
                                 @Override
                                 public void onLoadCleared(@Nullable Drawable placeholder) {
@@ -355,15 +312,15 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
 
                                 }
 
-                                @Override
-                                public void setRequest(@Nullable Request request) {
-
-                                }
-
                                 @Nullable
                                 @Override
                                 public Request getRequest() {
                                     return null;
+                                }
+
+                                @Override
+                                public void setRequest(@Nullable Request request) {
+
                                 }
 
                                 @Override
@@ -385,28 +342,17 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
 
                 for (Crew crew : crewList) {
                     if (crew != null) {
-                        //create and insert crew into room
                         final CrewRoom crewRoom = new CrewRoom();
                         crewRoom.setId(crew.getId());
                         crewRoom.setName(crew.getName());
                         crewRoom.setDepartment(crew.getDepartment());
                         crewRoomList.add(crewRoom);
 
-                        //create and insert crew-movie into room
                         final CrewMovieRoom crewMovieRoom = new CrewMovieRoom();
                         crewMovieRoom.setCrewId(crew.getId());
                         crewMovieRoom.setMovieId(movieId);
 
-                        new AsyncTask<Void, Void, Void>() {
-                            @Override
-                            protected Void doInBackground(Void... voids) {
-                                crewDao.insert(crewRoom);
-                                Log.d("TAG", crewRoom.toString());
-                                Log.d("TAG", crewMovieRoom.toString());
-                                crewMovieRoomDao.insert(crewMovieRoom);
-                                return null;
-                            }
-                        }.execute();
+                        insertCrewMembers(crewRoom, crewMovieRoom);
                     }
                 }
             }
@@ -414,9 +360,80 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
 
             @Override
             public void onFailure(Call<Credits> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), getResources().getString(R.string.retrofit_failure), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),
+                        getResources().getString(R.string.retrofit_failure), Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private void insertCrewMembers(final CrewRoom crewRoom, final CrewMovieRoom crewMovieRoom) {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                crewDao.insert(crewRoom);
+                crewMovieRoomDao.insert(crewMovieRoom);
+                return null;
+            }
+        }.execute();
+    }
+
+    private void insertCastMembers(final CastRoom castRoom, final CastMovieRoom castMovieRoom) {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                castDao.insert(castRoom);
+                castMovieRoomDao.insert(castMovieRoom);
+                return null;
+            }
+        }.execute();
+    }
+
+    private void insertMovie(final MovieRoom movieRoom, final List<MovieRoom> movieRooms) {
+        new AsyncTask<Void, Void, MovieRoom>() {
+            @Override
+            protected MovieRoom doInBackground(Void... voids) {
+                movieDao.insert(movieRoom);
+                return movieRoom;
+            }
+
+            @Override
+            protected void onPostExecute(MovieRoom movieRoom) {
+                movieRooms.add(movieRoom);
+                setUI(movieRooms);
+                getCredits(movieRoom.getId());
+            }
+        }.execute();
+    }
+
+    private void loadFoundMovies(final String movieTitle) {
+        new AsyncTask<Void, Void, List<MovieRoom>>() {
+            @Override
+            protected List<MovieRoom> doInBackground(Void... params) {
+                return movieDao.getMovieByTitle(movieTitle + SEARCH_WILDCARD);
+            }
+
+            @Override
+            protected void onPostExecute(List<MovieRoom> items) {
+                setUI(items);
+                String searchResult = "<b>" + items.size() + "</b> " + getString(R.string.search_result);
+                resultTextView.setText(Html.fromHtml(searchResult));
+                resultTextView.setVisibility(View.VISIBLE);
+            }
+        }.execute();
+    }
+
+    private void loadMovies() {
+        new AsyncTask<Void, Void, List<MovieRoom>>() {
+            @Override
+            protected List<MovieRoom> doInBackground(Void... params) {
+                return movieDao.getAllMovies();
+            }
+
+            @Override
+            protected void onPostExecute(List<MovieRoom> items) {
+                setUI(items);
+            }
+        }.execute();
     }
 
     private void setFloatingActionButton() {

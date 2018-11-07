@@ -25,8 +25,6 @@ import static com.grrigore.themoviedb.utils.Constants.PICK_IMAGE;
 
 public class MovieAdderActivity extends AppCompatActivity {
 
-    //todo refactor methods
-    //todo refactor variable name
     private EditText titleEditText;
     private EditText overviewEditText;
     private EditText imdbIdEditText;
@@ -94,6 +92,10 @@ public class MovieAdderActivity extends AppCompatActivity {
         movie.setId(Integer.valueOf(imdbIdEditText.getText().toString()));
         movie.setPoster(poster);
 
+        insertMovie();
+    }
+
+    private void insertMovie() {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {

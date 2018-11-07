@@ -39,8 +39,6 @@ import static com.grrigore.themoviedb.utils.Utils.setProgressBarColor;
 
 public class MovieDetailActivity extends AppCompatActivity {
 
-    //todo refactor methods
-    //todo refactor variable name
     private Integer movieId;
 
     private ImageView coverImageView;
@@ -49,20 +47,16 @@ public class MovieDetailActivity extends AppCompatActivity {
     private TextView titleTextView;
     private TextView releaseDateTextView;
     private TextView overviewTextView;
-
     private RecyclerView castRecyclerView;
     private RecyclerView crewRecyclerView;
-
     private CardView crewCardView;
     private CardView castCardView;
     private CircularProgressBar ratingProgressBar;
-
     private FrameLayout posterFrameLayout;
 
     private MovieDao movieDao;
     private CastMovieRoomDao castMovieRoomDao;
     private CrewMovieRoomDao crewMovieRoomDao;
-
 
     private CastAdapter castAdapter;
     private CrewAdapter crewAdapter;
@@ -81,12 +75,8 @@ public class MovieDetailActivity extends AppCompatActivity {
         titleTextView = findViewById(R.id.textView_moviedetail_title);
         releaseDateTextView = findViewById(R.id.textView_moviedetail_releasedate);
         overviewTextView = findViewById(R.id.textview_moviedetail_movieoverview);
-
         ratingProgressBar = findViewById(R.id.progresscircular_moviedetail_rating);
-
         posterFrameLayout = findViewById(R.id.framelayout_moviedetail_poster);
-
-
         crewCardView = findViewById(R.id.cardview_moviedetail_crew);
         castCardView = findViewById(R.id.cardview_moviedetail_cast);
 
@@ -123,6 +113,11 @@ public class MovieDetailActivity extends AppCompatActivity {
         castMovieRoomDao = MovieDatabase.getMovieDatabaseInsatnce(getApplicationContext()).getCastMovieRoomDao();
         crewMovieRoomDao = MovieDatabase.getMovieDatabaseInsatnce(getApplicationContext()).getCrewMovieRoomDao();
 
+        loadMovies();
+
+    }
+
+    private void loadMovies() {
         new AsyncTask<Void, Void, MovieRoom>() {
             @Override
             protected MovieRoom doInBackground(Void... voids) {
@@ -133,39 +128,46 @@ public class MovieDetailActivity extends AppCompatActivity {
             protected void onPostExecute(MovieRoom movieRoom) {
                 Log.d("TAG", movieRoom.toString());
                 setMovieUi(movieRoom);
-                new AsyncTask<Void, Void, List<CrewRoom>>() {
-                    @Override
-                    protected List<CrewRoom> doInBackground(Void... voids) {
-                        return crewMovieRoomDao.getCrewByMovieId(movieId);
-                    }
-
-                    @Override
-                    protected void onPostExecute(List<CrewRoom> crewRoom) {
-                        if (crewRoom.size() == 0) {
-                            crewCardView.setVisibility(View.INVISIBLE);
-                        } else {
-                            setCrewRecyclerViewUi(crewRoom);
-                        }
-                        new AsyncTask<Void, Void, List<CastRoom>>() {
-                            @Override
-                            protected List<CastRoom> doInBackground(Void... voids) {
-                                return castMovieRoomDao.getCastByMovieId(movieId);
-                            }
-
-                            @Override
-                            protected void onPostExecute(List<CastRoom> castRoom) {
-                                if (castRoom.size() == 0) {
-                                    castCardView.setVisibility(View.INVISIBLE);
-                                } else {
-                                    setCastRecyclerViewUi(castRoom);
-                                }
-                            }
-                        }.execute();
-                    }
-                }.execute();
+                loadCrewMembers();
             }
         }.execute();
+    }
 
+    private void loadCrewMembers() {
+        new AsyncTask<Void, Void, List<CrewRoom>>() {
+            @Override
+            protected List<CrewRoom> doInBackground(Void... voids) {
+                return crewMovieRoomDao.getCrewByMovieId(movieId);
+            }
+
+            @Override
+            protected void onPostExecute(List<CrewRoom> crewRoom) {
+                if (crewRoom.size() == 0) {
+                    crewCardView.setVisibility(View.INVISIBLE);
+                } else {
+                    setCrewRecyclerViewUi(crewRoom);
+                }
+                loadCastMembers();
+            }
+        }.execute();
+    }
+
+    private void loadCastMembers() {
+        new AsyncTask<Void, Void, List<CastRoom>>() {
+            @Override
+            protected List<CastRoom> doInBackground(Void... voids) {
+                return castMovieRoomDao.getCastByMovieId(movieId);
+            }
+
+            @Override
+            protected void onPostExecute(List<CastRoom> castRoom) {
+                if (castRoom.size() == 0) {
+                    castCardView.setVisibility(View.INVISIBLE);
+                } else {
+                    setCastRecyclerViewUi(castRoom);
+                }
+            }
+        }.execute();
     }
 
     private void setMovieUi(MovieRoom movie) {

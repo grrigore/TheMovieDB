@@ -2,7 +2,6 @@ package com.grrigore.themoviedb.utils;
 
 public class Constants {
 
-    //todo extract constants
     public static final String BASE_URL = "https://api.themoviedb.org";
     public static final String API_KEY = "";
     public static final String LANGUAGE = "en-US";

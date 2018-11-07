@@ -67,7 +67,6 @@ import static com.grrigore.themoviedb.utils.Constants.SEARCH_WILDCARD;
 import static com.grrigore.themoviedb.utils.Utils.doesDatabaseExist;
 import static com.grrigore.themoviedb.utils.Utils.getSubList;
 
-
 public class MainActivity extends AppCompatActivity implements MovieAdapter.ItemClickListener {
     //todo run Lint, run FindBugs, run CheckStyle
 
@@ -108,7 +107,9 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
 
         movieListAdapter = new MovieAdapter(new ArrayList<MovieRoom>(), getApplicationContext());
 
-        movieApiInterface = RetrofitClientInstance.getRetrofitInstance().create(MovieApiInterface.class);
+        movieApiInterface = RetrofitClientInstance.getRetrofitInstance()
+                .create(MovieApiInterface.class);
+
         populateDatabase();
 
         movieSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -138,8 +139,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
         }
     }
 
-
-    private void setUI(List<MovieRoom> movies) {
+    private void setLayout(List<MovieRoom> movies) {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         movieListRecyclerView.setLayoutManager(layoutManager);
         movieListAdapter.setMovies(movies);
@@ -257,7 +257,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
                 List<Cast> castList = credits.getCastList();
                 castList = (List<Cast>) getSubList(castList, 4);
 
-                List<CrewRoom> crewRoomList = new ArrayList<>();
                 for (final Cast cast : castList) {
                     String profileUrl = BASE_URL_PROFILE + cast.getProfilePath();
                     Glide.with(getApplicationContext())
@@ -346,7 +345,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
                         crewRoom.setId(crew.getId());
                         crewRoom.setName(crew.getName());
                         crewRoom.setDepartment(crew.getDepartment());
-                        crewRoomList.add(crewRoom);
 
                         final CrewMovieRoom crewMovieRoom = new CrewMovieRoom();
                         crewMovieRoom.setCrewId(crew.getId());
@@ -399,7 +397,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
             @Override
             protected void onPostExecute(MovieRoom movieRoom) {
                 movieRooms.add(movieRoom);
-                setUI(movieRooms);
+                setLayout(movieRooms);
                 getCredits(movieRoom.getId());
             }
         }.execute();
@@ -414,7 +412,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
 
             @Override
             protected void onPostExecute(List<MovieRoom> items) {
-                setUI(items);
+                setLayout(items);
                 String searchResult = "<b>" + items.size() + "</b> " + getString(R.string.search_result);
                 resultTextView.setText(Html.fromHtml(searchResult));
                 resultTextView.setVisibility(View.VISIBLE);
@@ -431,7 +429,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
 
             @Override
             protected void onPostExecute(List<MovieRoom> items) {
-                setUI(items);
+                setLayout(items);
             }
         }.execute();
     }

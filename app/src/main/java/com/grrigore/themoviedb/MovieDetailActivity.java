@@ -79,7 +79,6 @@ public class MovieDetailActivity extends AppCompatActivity {
         posterFrameLayout = findViewById(R.id.framelayout_moviedetail_poster);
         crewCardView = findViewById(R.id.cardview_moviedetail_crew);
         castCardView = findViewById(R.id.cardview_moviedetail_cast);
-
         castRecyclerView = findViewById(R.id.recyclerview_moviedetail_cast);
         castRecyclerView.setHasFixedSize(true);
         castRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
@@ -112,9 +111,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         movieDao = MovieDatabase.getMovieDatabaseInsatnce(getApplicationContext()).getMovieDao();
         castMovieRoomDao = MovieDatabase.getMovieDatabaseInsatnce(getApplicationContext()).getCastMovieRoomDao();
         crewMovieRoomDao = MovieDatabase.getMovieDatabaseInsatnce(getApplicationContext()).getCrewMovieRoomDao();
-
         loadMovies();
-
     }
 
     private void loadMovies() {

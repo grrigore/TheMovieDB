@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">TheMovieDB</string>
-    <string name="search_result">Movies based on your search.</string>
+    <string name="main_activity_title">Movies</string>
+    <string name="adder_activity_title">Add movie</string>
+    <string name="poster_select_title">Select movie poster</string>
+    <string name="poster_select_error">Error while selecting poster!</string>
+    <string name="poster_select_success">Poster loaded!</string>
+
+    <string name="search_result">movies based on your search.</string>
     <string name="file_requirement">Add images (png, jpg), pdf or excel \n files no larger than 2 MB.</string>
     <string name="image_icon">Image icon</string>
     <string name="list_button">List button</string>
@@ -23,4 +29,6 @@
     <string name="options">Options</string>
     <string name="not_rated">NR</string>
     <string name="not_available">Not available.</string>
+    <string name="retrofit_failure">Connect to the internet!</string>
+    <string name="add_movie_success">Movie added!</string>
 </resources>

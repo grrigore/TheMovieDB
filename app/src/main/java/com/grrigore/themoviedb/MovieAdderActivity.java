@@ -46,10 +46,9 @@ public class MovieAdderActivity extends AppCompatActivity {
         imdbIdEditText = findViewById(R.id.edittext_addmovie_imdbid);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Add movie");
+        toolbar.setTitle(getResources().getString(R.string.adder_activity_title));
         toolbar.setNavigationIcon(R.drawable.ic_arrow_left);
         setSupportActionBar(toolbar);
-
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,14 +62,14 @@ public class MovieAdderActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select poster"), PICK_IMAGE);
+        startActivityForResult(Intent.createChooser(intent, getResources().getString(R.string.poster_select_title)), PICK_IMAGE);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == PICK_IMAGE && resultCode == Activity.RESULT_OK) {
             if (data == null) {
-                Toast.makeText(getApplicationContext(), "Error!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.poster_select_error), Toast.LENGTH_LONG).show();
             } else {
                 Uri uri = data.getData();
                 try {
@@ -80,9 +79,10 @@ public class MovieAdderActivity extends AppCompatActivity {
                     poster = stream.toByteArray();
                     bitmap.recycle();
 
-                    Toast.makeText(getApplicationContext(), "Image loaded!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.poster_select_success), Toast.LENGTH_SHORT).show();
                 } catch (IOException e) {
                     e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.poster_select_error), Toast.LENGTH_LONG).show();
                 }
             }
         }
@@ -104,7 +104,7 @@ public class MovieAdderActivity extends AppCompatActivity {
 
             @Override
             protected void onPostExecute(Void aVoid) {
-                Toast.makeText(getApplicationContext(), "Movie added!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.add_movie_success), Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }

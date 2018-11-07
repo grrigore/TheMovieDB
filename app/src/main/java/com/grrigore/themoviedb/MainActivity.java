@@ -64,6 +64,7 @@ import static com.grrigore.themoviedb.utils.Constants.CATEGORY;
 import static com.grrigore.themoviedb.utils.Constants.DB_NAME;
 import static com.grrigore.themoviedb.utils.Constants.LANGUAGE;
 import static com.grrigore.themoviedb.utils.Constants.MOVIE_CLICKED;
+import static com.grrigore.themoviedb.utils.Constants.SEARCH_WILDCARD;
 import static com.grrigore.themoviedb.utils.Utils.doesDatabaseExist;
 import static com.grrigore.themoviedb.utils.Utils.getSubList;
 
@@ -117,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
                 new AsyncTask<Void, Void, List<MovieRoom>>() {
                     @Override
                     protected List<MovieRoom> doInBackground(Void... params) {
-                        return movieDao.getMovieByTitle(s + "%");
+                        return movieDao.getMovieByTitle(s + SEARCH_WILDCARD);
                     }
 
                     @Override
@@ -211,8 +212,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
                                     posterByteArray = stream.toByteArray();
                                     movieRoom.setPoster(posterByteArray);
 
-                                    Log.d("TAG", movieRoom.toString());
-
                                     new AsyncTask<Void, Void, MovieRoom>() {
                                         @Override
                                         protected MovieRoom doInBackground(Void... voids) {
@@ -274,7 +273,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
 
             @Override
             public void onFailure(Call<MoviesList> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Connect to the internet!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.retrofit_failure), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -415,7 +414,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
 
             @Override
             public void onFailure(Call<Credits> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Failed!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.retrofit_failure), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -434,7 +433,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
     private void setToolbar() {
         mainActivityContext = getApplicationContext();
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Movies");
+        toolbar.setTitle(getResources().getString(R.string.main_activity_title));
         toolbar.setNavigationIcon(R.drawable.ic_arrow_left);
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

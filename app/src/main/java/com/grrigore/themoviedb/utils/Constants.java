@@ -15,4 +15,6 @@ public class Constants {
     public static final String MOVIE_CLICKED = "movieClicked";
 
     public static final int PICK_IMAGE = 1;
+
+    public static final String SEARCH_WILDCARD = "%";
 }

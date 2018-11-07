@@ -6,25 +6,18 @@
     android:layout_marginBottom="8dp">
 
     <TextView
-        android:gravity="start"
         android:id="@+id/textview_moviedetail_crewname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/item_crew.name" />
 
 
     <TextView
-        android:gravity="start"
         android:id="@+id/textview_moviedetail_crewdepartment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_moviedetail_crewname" />
+        app:layout_constraintTop_toBottomOf="@+id/textview_moviedetail_crewname"
+        style="@style/item_crew.department" />
 
 </android.support.constraint.ConstraintLayout>

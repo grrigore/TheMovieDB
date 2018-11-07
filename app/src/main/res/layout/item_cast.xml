@@ -5,18 +5,10 @@
 
     <ImageView
         android:id="@+id/imageview_moviedetail_cast"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center"
-        android:contentDescription="@string/cast_profile"
-        android:padding="6dp"
-        android:scaleType="centerCrop" />
+        style="@style/profile_cast" />
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:contentDescription="@string/cast_profile"
-        android:src="@drawable/profile_frame" />
+        android:src="@drawable/profile_frame"
+        style="@style/profile_cast.profile_frame" />
 
 </FrameLayout>

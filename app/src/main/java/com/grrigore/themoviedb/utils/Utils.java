@@ -5,6 +5,12 @@ import android.content.Context;
 import com.grrigore.themoviedb.R;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 public class Utils {
@@ -35,5 +41,25 @@ public class Utils {
         if (list.size() >= numberOfElements)
             return list.subList(0, numberOfElements);
         return list;
+    }
+
+    public static String parseDate(String date) {
+        String datePattern = "dd MMMM, yyyy";
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(datePattern);
+            LocalDate localDate = LocalDate.parse(date, dateTimeFormatter);
+            return localDate.format(dateTimeFormatter);
+        } else {
+            Date date1 = null;
+            DateFormat outputFormatter = null;
+            try {
+                DateFormat inputFormatter = new SimpleDateFormat("yyyy-MM-dd");
+                date1 = inputFormatter.parse(date);
+                outputFormatter = new SimpleDateFormat(datePattern);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            return outputFormatter.format(date1);
+        }
     }
 }

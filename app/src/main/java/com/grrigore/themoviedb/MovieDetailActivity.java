@@ -35,6 +35,7 @@ import java.util.List;
 
 import static com.grrigore.themoviedb.utils.Constants.MOVIE_CLICKED;
 import static com.grrigore.themoviedb.utils.Utils.formatFloat;
+import static com.grrigore.themoviedb.utils.Utils.parseDate;
 import static com.grrigore.themoviedb.utils.Utils.setProgressBarColor;
 
 public class MovieDetailActivity extends AppCompatActivity {
@@ -185,7 +186,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         }
 
         if (movie.getReleaseDate() != null) {
-            releaseDateTextView.setText(movie.getReleaseDate());
+            releaseDateTextView.setText(parseDate(movie.getReleaseDate()));
         } else {
             releaseDateTextView.setText(getResources().getString(R.string.not_available));
         }

@@ -18,6 +18,7 @@ import com.grrigore.themoviedb.data.MovieRoom;
 import java.util.List;
 
 import static com.grrigore.themoviedb.utils.Utils.formatFloat;
+import static com.grrigore.themoviedb.utils.Utils.parseDate;
 import static com.grrigore.themoviedb.utils.Utils.setProgressBarColor;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
@@ -60,7 +61,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             movieViewHolder.circularProgressBar.setForegroundStrokeColor(ContextCompat.getColor(context, setProgressBarColor(rating)));
         }
         if (movie.getReleaseDate() != null) {
-            movieViewHolder.releaseDateTextView.setText(movie.getReleaseDate());
+            movieViewHolder.releaseDateTextView.setText(parseDate(movie.getReleaseDate()));
         } else {
             movieViewHolder.releaseDateTextView.setText(context.getResources().getString(R.string.not_available));
         }

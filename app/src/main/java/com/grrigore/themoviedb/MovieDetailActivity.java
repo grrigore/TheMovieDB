@@ -68,7 +68,9 @@ public class MovieDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_movie_detail);
 
         Bundle bundle = getIntent().getExtras();
-        movieId = bundle.getInt(MOVIE_CLICKED);
+        if (bundle != null) {
+            movieId = bundle.getInt(MOVIE_CLICKED);
+        }
 
         coverImageView = findViewById(R.id.imageview_moviedetails_cover);
         posterImageView = findViewById(R.id.imageview_moviedetail_poster);

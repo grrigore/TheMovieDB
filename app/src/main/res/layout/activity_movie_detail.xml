@@ -58,15 +58,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="64dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/framelayout_moviedetail_poster"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.120000005">
+            app:layout_constraintTop_toTopOf="parent">
 
             <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -127,9 +124,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:gravity="start"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
+                android:gravity="start"
 
                 android:textColor="@color/lightGrey"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -268,28 +265,25 @@
             android:id="@+id/framelayout_moviedetail_poster"
             android:layout_width="120dp"
             android:layout_height="180dp"
-            android:elevation="2dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="56dp"
             android:layout_marginEnd="32dp"
             android:layout_marginRight="32dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:elevation="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.050000012">
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/imageview_moviedetail_poster"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/movie_poster"
-                android:src="@drawable/poster_placeholder"
                 android:padding="6dp"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/poster_placeholder" />
 
             <ImageView
                 android:layout_width="match_parent"
@@ -319,7 +313,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
 
                 <TextView
                     android:layout_width="match_parent"
@@ -365,7 +358,6 @@
                     android:text="@string/top_billed_cast" />
 
                 <android.support.v7.widget.RecyclerView
-
                     android:id="@+id/recyclerview_moviedetail_cast"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

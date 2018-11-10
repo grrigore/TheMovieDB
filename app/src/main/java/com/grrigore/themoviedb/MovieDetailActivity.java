@@ -207,6 +207,7 @@ public class MovieDetailActivity extends AppCompatActivity {
     }
 
     private void setCrewRecyclerViewUi(List<CrewRoom> crewRoom) {
+        //todo better divier
         crewAdapter = new CrewAdapter(crewRoom);
         Drawable horizontalDivider = ContextCompat.getDrawable(this, R.drawable.line_divider_horizontal);
         Drawable verticalDivider = ContextCompat.getDrawable(this, R.drawable.line_divider_verical);
@@ -217,6 +218,7 @@ public class MovieDetailActivity extends AppCompatActivity {
 
     private void setCastRecyclerViewUi(List<CastRoom> castRoom) {
         castAdapter = new CastAdapter(castRoom);
+
         castRecyclerView.setAdapter(castAdapter);
     }
 }

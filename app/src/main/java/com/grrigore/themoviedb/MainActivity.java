@@ -263,7 +263,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
                             .asBitmap()
                             .load(profileUrl)
                             .apply(new RequestOptions()
-                                    .override(120, 180))
+                                    .override(150, 150))
                             .into(new Target<Bitmap>() {
                                 //create and insert cast into room
                                 CastRoom castRoom = new CastRoom();

@@ -27,7 +27,6 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SizeReadyCallback;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
-import com.facebook.stetho.Stetho;
 import com.grrigore.themoviedb.adapter.MovieAdapter;
 import com.grrigore.themoviedb.data.CastDao;
 import com.grrigore.themoviedb.data.CastMovieRoom;
@@ -92,9 +91,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //stetho
-        Stetho.initializeWithDefaults(this);
 
         setContentView(R.layout.activity_main);
         resultTextView = findViewById(R.id.textview_main_searchresult);

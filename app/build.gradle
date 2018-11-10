@@ -57,7 +57,6 @@ dependencies {
     //Simple item decoration
     implementation 'com.bignerdranch.android:simple-item-decoration:1.0.0'
 
-    //Stetho
-    implementation 'com.facebook.stetho:stetho:1.5.0'
-    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.0' // for OkHttp library
+    //Shape imageview
+    implementation 'com.github.siyamed:android-shape-imageview:0.9.+@aar'
 }

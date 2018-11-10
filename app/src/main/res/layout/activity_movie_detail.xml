@@ -33,13 +33,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
+                <com.github.siyamed.shapeimageview.mask.PorterShapeImageView
                     android:id="@+id/imageview_moviedetails_cover"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/movie_poster"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/poster_placeholder" />
+                    android:src="@drawable/poster_placeholder"
+                    app:siSquare = "false"
+                    app:siShape = "@drawable/rectangle"/>
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -233,9 +235,9 @@
 
                 <TextView
                     android:id="@+id/textview_moviedetail_overview"
+                    style="@style/cardview_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/cardview_title"
                     android:text="@string/overview"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -315,10 +317,10 @@
                 android:orientation="vertical">
 
                 <TextView
+                    style="@style/cardview_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/featured_crew"
-                    style="@style/cardview_title" />
+                    android:text="@string/featured_crew" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recyclerview_moviedetail_crew"
@@ -352,9 +354,9 @@
                 android:orientation="vertical">
 
                 <TextView
+                    style="@style/cardview_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/cardview_title"
                     android:text="@string/top_billed_cast" />
 
                 <android.support.v7.widget.RecyclerView

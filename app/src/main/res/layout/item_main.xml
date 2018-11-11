@@ -23,6 +23,7 @@
         <TextView
             android:id="@+id/textView_main_releasedate"
             style="@style/movie_releasedate"
+            android:text="12 sept 2018"
             app:layout_constraintBottom_toTopOf="@+id/textview_main_description"
             app:layout_constraintEnd_toStartOf="@+id/framelayout_main_rating"
             app:layout_constraintHorizontal_bias="0.5"
@@ -32,6 +33,7 @@
         <TextView
             android:id="@+id/textView_main_title"
             style="@style/movie_title"
+            android:text="TItle"
             app:layout_constraintBottom_toTopOf="@+id/textView_main_releasedate"
             app:layout_constraintEnd_toStartOf="@+id/framelayout_main_rating"
             app:layout_constraintHorizontal_bias="0.5"

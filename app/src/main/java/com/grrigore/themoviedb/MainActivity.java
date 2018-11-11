@@ -67,7 +67,6 @@ import static com.grrigore.themoviedb.utils.Utils.doesDatabaseExist;
 import static com.grrigore.themoviedb.utils.Utils.getSubList;
 
 public class MainActivity extends AppCompatActivity implements MovieAdapter.ItemClickListener {
-    //todo run Lint, run FindBugs, run CheckStyle
 
     private Context mainActivityContext;
 
